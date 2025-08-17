@@ -34,7 +34,7 @@ To use the Zig module:
 
 - add a dependency to your build.zig.zon:
     ```
-    zig fetch --save=cimgui git+https://github.com/floooh/dcimgui.git
+    zig fetch --save=cimgui git+https://github.com/Hassan-Ibrahim-1/dcimgui.git
     ```
 - ...and see https://github.com/floooh/sokol-zig-imgui-sample/blob/main/build.zig
   for how to integrate the `cimgui` or `cimgui_docking` module with your Zig project
