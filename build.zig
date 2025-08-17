@@ -9,8 +9,6 @@ const imgui_sources = [_][]const u8{
     "imgui_tables.cpp",
     "imgui_widgets.cpp",
     "imgui.cpp",
-    "imgui_impl_glfw.cpp",
-    "imgui_impl_opengl3.cpp",
 };
 
 // returned by the getConfig() helper function to get a matching
@@ -20,8 +18,17 @@ const imgui_sources = [_][]const u8{
 pub const Config = struct {
     module_name: []const u8, // cimgui or cimgui_docking
     include_dir: []const u8, // src or src-docking
+    backend_include_dir: []const u8,
     clib_name: []const u8, // cimgui_clib or cimgui_docking_clib
 };
+
+pub fn glfwBackendSource() []const u8 {
+    return "backends/imgui_impl_glfw.cpp";
+}
+
+pub fn openGlBackendSource() []const u8 {
+    return "backends/imgui_impl_opengl3.cpp";
+}
 
 // helper function to return a matching set of Zig module name,
 // C header search path and C library name for docking vs non-docking
@@ -29,6 +36,7 @@ pub fn getConfig() Config {
     return .{
         .module_name = "cimgui",
         .include_dir = "src",
+        .backend_include_dir = "backends",
         .clib_name = "cimgui_clib",
     };
 }
@@ -85,8 +93,6 @@ fn buildModule(b: *std.Build, opts: BuildModuleOptions) !void {
         .root_module = mod_clib,
         .linkage = opts.linkage,
     });
-
-    clib.linkSystemLibrary("glfw");
 
     // make the C library available as artifact, this allows to inject
     // the Emscripten sysroot include path in the upstream project
