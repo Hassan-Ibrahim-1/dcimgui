@@ -10,6 +10,7 @@ const imgui_sources = [_][]const u8{
     "imgui_widgets.cpp",
     "imgui.cpp",
     "imgui_impl_glfw.cpp",
+    "imgui_impl_opengl3.cpp",
 };
 
 // returned by the getConfig() helper function to get a matching
