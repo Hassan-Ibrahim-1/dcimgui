@@ -80,7 +80,7 @@ fn buildModule(b: *std.Build, opts: BuildModuleOptions) !void {
     if (opts.target.result.cpu.arch.isWasm()) {
         // on WASM, switch off UBSAN (zig-cc enables this by default in debug mode)
         // but it requires linking with an ubsan runtime)
-        try cflags.appendBounded("-fno-sanitize=undefined");
+        cflags.appendAssumeCapacity("-fno-sanitize=undefined");
     }
 
     // build imgui into a C library
