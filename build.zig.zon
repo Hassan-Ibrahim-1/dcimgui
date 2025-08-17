@@ -4,7 +4,7 @@
     .fingerprint = 0x49726f5f91a580e3,
     .paths = .{
         "src",
-        "src-docking",
+        "backends",
         "build.zig",
         "build.zig.zon",
     },
