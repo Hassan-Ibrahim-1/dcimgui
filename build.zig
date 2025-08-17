@@ -25,20 +25,12 @@ pub const Config = struct {
 
 // helper function to return a matching set of Zig module name,
 // C header search path and C library name for docking vs non-docking
-pub fn getConfig(docking: bool) Config {
-    if (docking) {
-        return .{
-            .module_name = "cimgui_docking",
-            .include_dir = "src-docking",
-            .clib_name = "cimgui_docking_clib",
-        };
-    } else {
-        return .{
-            .module_name = "cimgui",
-            .include_dir = "src",
-            .clib_name = "cimgui_clib",
-        };
-    }
+pub fn getConfig() Config {
+    return .{
+        .module_name = "cimgui",
+        .include_dir = "src",
+        .clib_name = "cimgui_clib",
+    };
 }
 
 pub fn build(b: *std.Build) !void {
@@ -50,16 +42,6 @@ pub fn build(b: *std.Build) !void {
     try buildModule(b, .{
         .modname = "cimgui",
         .subdir = "src",
-        .sources = &imgui_sources,
-        .target = target,
-        .optimize = optimize,
-        .linkage = if (opt_dynamic_linkage) .dynamic else .static,
-    });
-
-    // ...and the imgui_docking module
-    try buildModule(b, .{
-        .modname = "cimgui_docking",
-        .subdir = "src-docking",
         .sources = &imgui_sources,
         .target = target,
         .optimize = optimize,
