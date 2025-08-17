@@ -102,6 +102,9 @@ fn buildModule(b: *std.Build, opts: BuildModuleOptions) !void {
         .root_module = mod_clib,
         .linkage = opts.linkage,
     });
+
+    clib.linkSystemLibrary("glfw");
+
     // make the C library available as artifact, this allows to inject
     // the Emscripten sysroot include path in the upstream project
     b.installArtifact(clib);

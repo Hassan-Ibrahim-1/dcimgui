@@ -1,4 +1,6 @@
 This repo was worked from flooh/dcimgui to make it work for zig 0.14
+This repo also assumes that you are using glfw and opengl. it builds
+those backends by default. you must have glfw installed on your system
 
 [![Build](https://github.com/floooh/dcimgui/actions/workflows/build.yml/badge.svg)](https://github.com/floooh/dcimgui/actions/workflows/build.yml)
 
