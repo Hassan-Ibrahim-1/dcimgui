@@ -22,14 +22,6 @@ pub const Config = struct {
     clib_name: []const u8, // cimgui_clib or cimgui_docking_clib
 };
 
-pub fn glfwBackendSource() []const u8 {
-    return "backends/imgui_impl_glfw.cpp";
-}
-
-pub fn openGlBackendSource() []const u8 {
-    return "backends/imgui_impl_opengl3.cpp";
-}
-
 // helper function to return a matching set of Zig module name,
 // C header search path and C library name for docking vs non-docking
 pub fn getConfig() Config {
